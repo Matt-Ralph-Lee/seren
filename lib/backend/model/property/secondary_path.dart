@@ -10,6 +10,6 @@ class SecondaryPath {
   }
 
   bool _validate(String value) {
-    return !value.contains("memory/secondary");
+    return !value.contains("secondary");
   }
 }

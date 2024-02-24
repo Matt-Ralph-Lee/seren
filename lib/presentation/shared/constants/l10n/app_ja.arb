@@ -1,0 +1,10 @@
+{
+  "@@locale": "ja",
+  "title": "Flutterのデモページ",
+  "message": "あなたは以下の回数ボタンを押しました:",
+  "errorMessage": "エラーが発生しました",
+  "noUserFound": "ユーザーが見つかりませんでした",
+  "wrongPassword": "パスワードが間違っています",
+  "emailAlreadyInUse": "このメールアドレスは既に使用されています",
+  "invalidEmail": "無効なメールアドレスです"
+}

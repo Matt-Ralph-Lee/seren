@@ -1,0 +1,10 @@
+{
+  "@@locale": "en",
+  "title": "Flutter Demo Home Page",
+  "message": "You have pushed the button this many times:",
+  "errorMessage": "something went wrong",
+  "noUserFound": "user cannot be found",
+  "wrongPassword": "Wrong Password",
+  "emailAlreadyInUse": "This email has already been used",
+  "invalidEmail": "Invalid Email"
+}
