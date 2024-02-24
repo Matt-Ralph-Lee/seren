@@ -1,5 +1,5 @@
 class RetakeTime {
-  static const minValue = 1;
+  static const minValue = 0;
   final int _value;
 
   int get value => _value;

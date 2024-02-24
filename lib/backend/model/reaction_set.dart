@@ -1,4 +1,4 @@
-import 'property/reaction.dart';
+import 'reaction.dart';
 
 class ReactionSet extends Iterable {
   final Set<Reaction> _reactionSet;

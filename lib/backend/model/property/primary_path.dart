@@ -10,6 +10,6 @@ class PrimaryPath {
   }
 
   bool _validate(String value) {
-    return !value.contains("memory/primary");
+    return !value.contains("primary");
   }
 }
