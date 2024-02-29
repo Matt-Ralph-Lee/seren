@@ -38,4 +38,23 @@ class PictureMemory {
         _location = location,
         _locationAccess = locationAccess,
         _retakeTime = retakeTime;
+
+  factory PictureMemory.fromRTDB(final Map<dynamic, dynamic> data) {
+    return PictureMemory(
+      shotTime: ShotTime(DateTime.fromMillisecondsSinceEpoch(data["shotTime"])),
+      memoryId: MemoryId(data["memoryId"]),
+      primaryPath: PrimaryPath(data["primaryPicturePath"]),
+      secondaryPath: SecondaryPath(data["secondaryPicturePath"]),
+      location: Location(
+        latitude: data["location"]["latitude"].runtimeType == int
+            ? (data["location"]["latitude"] as int).toDouble()
+            : data["location"]["latitude"],
+        longitude: data["location"]["longitude"].runtimeType == int
+            ? (data["location"]["longitude"] as int).toDouble()
+            : data["location"]["longitude"],
+      ),
+      locationAccess: LocationAccess(data["locationAccess"]),
+      retakeTime: RetakeTime(data["retakeTime"]),
+    );
+  }
 }

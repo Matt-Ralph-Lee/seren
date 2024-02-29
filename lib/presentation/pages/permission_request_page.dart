@@ -13,7 +13,10 @@ class PermissionRequestPage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("permission request"),
+        title: const Text(
+          "permission request",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         children: [
@@ -21,19 +24,28 @@ class PermissionRequestPage extends HookWidget {
             onPressed: () async {
               await Permission.notification.request();
             },
-            child: const Text("enable notification"),
+            child: const Text(
+              "enable notification",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: () async {
               await Permission.location.request();
             },
-            child: const Text("enable location"),
+            child: const Text(
+              "enable location",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: () async {
               await Permission.camera.request();
             },
-            child: const Text("enable camera"),
+            child: const Text(
+              "enable camera",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: () {
@@ -52,11 +64,17 @@ class PermissionRequestPage extends HookWidget {
               });
               visibilityState.value = true;
             },
-            child: const Text("Next"),
+            child: const Text(
+              "Next",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           Visibility(
             visible: visibilityState.value,
-            child: const Text("please enable all"),
+            child: const Text(
+              "please enable all",
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),

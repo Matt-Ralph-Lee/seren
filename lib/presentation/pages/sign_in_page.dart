@@ -13,7 +13,10 @@ class SignInPage extends ConsumerWidget {
     final signInState = ref.watch(signInControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("sign in"),
+        title: const Text(
+          "sign in",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         children: [
@@ -25,17 +28,26 @@ class SignInPage extends ConsumerWidget {
                         .read(signInControllerProvider.notifier)
                         .execute("matthewralphlee@gmail.com", "hogehoge");
                   },
-            child: const Text("Sign In"),
+            child: const Text(
+              "Sign In",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: () {
               context.go(PagePath.signUp);
             },
-            child: const Text("create a new account"),
+            child: const Text(
+              "create a new account",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           Visibility(
             visible: signInState.hasError,
-            child: Text("${signInState.error}"),
+            child: Text(
+              "${signInState.error}",
+              style: const TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),

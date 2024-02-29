@@ -30,4 +30,20 @@ class IdentityRepository {
       "userIconPath": identity.userIconPath.value
     });
   }
+
+  Future<Username> getUsername(final UserId userId) async {
+    final event =
+        await db.child("user/${userId.value}/identity/username").once();
+    final usernameData = event.snapshot.value as String?;
+    if (usernameData == null) throw Exception("cannot find username");
+    return Username(usernameData);
+  }
+
+  Future<UserIconPath> getUserIconPath(final UserId userId) async {
+    final event =
+        await db.child("user/${userId.value}/identity/userIconPath").once();
+    final userIconPathData = event.snapshot.value as String?;
+    if (userIconPathData == null) throw Exception("cannot find userIconPath");
+    return UserIconPath(userIconPathData);
+  }
 }

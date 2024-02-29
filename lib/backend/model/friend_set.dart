@@ -1,6 +1,6 @@
 import 'property/user_id.dart';
 
-class FriendSet extends Iterable {
+class FriendSet extends Iterable<UserId> {
   final Set<UserId> _friendSet;
 
   Set<UserId> get friendSet => _friendSet;
@@ -8,5 +8,5 @@ class FriendSet extends Iterable {
   FriendSet(this._friendSet);
 
   @override
-  Iterator get iterator => _friendSet.iterator;
+  Iterator<UserId> get iterator => _friendSet.iterator;
 }

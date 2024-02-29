@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:seren/presentation/shared/constants/assets/asset_path.dart';
 import 'package:seren/presentation/shared/constants/page_path.dart';
 
 import '../controllers/write/set_identity/set_identity_controller.dart';
@@ -45,7 +46,10 @@ class InitialUserSettingPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("initial user setting"),
+        title: const Text(
+          "initial user setting",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         children: [
@@ -53,11 +57,15 @@ class InitialUserSettingPage extends HookConsumerWidget {
             onPressed: () async {
               await cropImage();
             },
-            child: const Text("crop image"),
+            child: const Text(
+              "crop image",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           selectedImagePath.value.isEmpty
-              ? Image.asset(
-                  "lib/presentation/shared/constants/assets/default_user_icon.jpg")
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(1000),
+                  child: Image.asset(AssetPath.defaultUserIcon))
               : ClipRRect(
                   borderRadius: BorderRadius.circular(1000),
                   child: Image.file(
@@ -77,7 +85,10 @@ class InitialUserSettingPage extends HookConsumerWidget {
                         .then((value) =>
                             context.push(PagePath.permissionRequest));
                   },
-            child: const Text("Set"),
+            child: const Text(
+              "Set",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),

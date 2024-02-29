@@ -24,4 +24,12 @@ class ProfileRepository {
       "longIntro": profile.longIntro.value,
     });
   }
+
+  Future<ShortIntro> getShortIntro(final UserId userId) async {
+    final event =
+        await db.child("user/${userId.value}/profile/shortIntro").once();
+    final shortIntroData = event.snapshot.value as String?;
+    if (shortIntroData == null) throw Exception("cannot find shortIntro");
+    return ShortIntro(shortIntroData);
+  }
 }

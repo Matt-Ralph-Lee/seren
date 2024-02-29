@@ -1,6 +1,6 @@
 import 'reaction.dart';
 
-class ReactionSet extends Iterable {
+class ReactionSet extends Iterable<Reaction> {
   final Set<Reaction> _reactionSet;
 
   Set<Reaction> get reactionSet => _reactionSet;
@@ -8,5 +8,5 @@ class ReactionSet extends Iterable {
   ReactionSet(this._reactionSet);
 
   @override
-  Iterator get iterator => _reactionSet.iterator;
+  Iterator<Reaction> get iterator => _reactionSet.iterator;
 }

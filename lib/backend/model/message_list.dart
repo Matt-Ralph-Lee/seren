@@ -1,6 +1,6 @@
 import 'message.dart';
 
-class MessageList extends Iterable {
+class MessageList extends Iterable<Message> {
   final List<Message> _messageList;
 
   List<Message> get messageList => _messageList;
@@ -8,5 +8,5 @@ class MessageList extends Iterable {
   MessageList(this._messageList);
 
   @override
-  Iterator get iterator => _messageList.iterator;
+  Iterator<Message> get iterator => _messageList.iterator;
 }
