@@ -19,13 +19,19 @@ class EmailVerificationPage extends ConsumerWidget {
     final signOutState = ref.watch(signOutControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("email verification"),
+        title: const Text(
+          "email verification",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         children: [
           ElevatedButton(
             onPressed: () {},
-            child: const Text("resend email"),
+            child: const Text(
+              "resend email",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: signOutState.isLoading
@@ -34,7 +40,10 @@ class EmailVerificationPage extends ConsumerWidget {
                     ref.read(signOutControllerProvider.notifier).execute();
                     context.go(PagePath.signUp);
                   },
-            child: const Text("try other email"),
+            child: const Text(
+              "try other email",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -48,7 +57,10 @@ class EmailVerificationPage extends ConsumerWidget {
                 });
               }
             },
-            child: const Text("set user identity"),
+            child: const Text(
+              "set user identity",
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),

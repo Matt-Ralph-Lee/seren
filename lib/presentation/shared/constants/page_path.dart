@@ -5,4 +5,5 @@ class PagePath {
   static const emailVerification = "/emailVerification";
   static const permissionRequest = "/permissionRequest";
   static const initialUserSetting = "/initialUserSetting";
+  static const matched = "/matched";
 }

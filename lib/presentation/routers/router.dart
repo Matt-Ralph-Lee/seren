@@ -6,6 +6,7 @@ import 'package:seren/backend/state/auth/auth_state.dart';
 import 'package:seren/presentation/pages/email_verification_page.dart';
 import 'package:seren/presentation/pages/home_page.dart';
 import 'package:seren/presentation/pages/initial_user_setting_page.dart';
+import 'package:seren/presentation/pages/matched_page.dart';
 import 'package:seren/presentation/pages/permission_request_page.dart';
 import 'package:seren/presentation/pages/sign_in_page.dart';
 import 'package:seren/presentation/pages/sign_up_page.dart';
@@ -44,6 +45,10 @@ GoRouter router(RouterRef ref) {
           path: PagePath.initial,
           builder: (_, __) => const HomePage(),
         ),
+        GoRoute(
+          path: PagePath.matched,
+          builder: (_, __) => const MatchedPage(),
+        )
       ],
     )
   ];
@@ -55,15 +60,16 @@ GoRouter router(RouterRef ref) {
     final isEmailVerified = await AuthService().isEmailVerified();
 
     if (isSignedIn) {
-      if (!isEmailVerified) return PagePath.emailVerification;
-      if (_isIntialSetting(pagePath)) return null;
-      if (pagePath == PagePath.emailVerification) return null;
-      return PagePath.initial;
+      if (!isEmailVerified) {
+        return PagePath.emailVerification;
+      }
+      if (_isAuthPage(pagePath)) {
+        return PagePath.initial;
+      }
     } else if (!isSignedIn & !_isAuthPage(pagePath)) {
       return PagePath.signIn;
-    } else {
-      return null;
     }
+    return null;
   }
 
   return GoRouter(
@@ -71,12 +77,6 @@ GoRouter router(RouterRef ref) {
     routes: routes,
     redirect: redirect,
   );
-}
-
-bool _isIntialSetting(final String path) {
-  final paths = [PagePath.initialUserSetting, PagePath.permissionRequest];
-
-  return paths.contains(path);
 }
 
 bool _isAuthPage(final String path) {

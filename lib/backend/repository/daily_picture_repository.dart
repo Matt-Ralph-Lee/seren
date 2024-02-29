@@ -21,7 +21,7 @@ class DailyPictureRepositiory {
     final secondaryPath =
         SecondaryPath(await StorageRepository().getDefaultSecondaryPathURL());
     final retakeTime = RetakeTime(0);
-    final location = Location(latitude: 0, longitude: 0);
+    final location = Location(latitude: 0.1, longitude: 0.1);
     final locationAccess = LocationAccess("private");
     final shotTime = ShotTime(DateTime.now());
 
@@ -48,6 +48,15 @@ class DailyPictureRepositiory {
       "locationAccess": dailyPicture.pictureMemory.locationAccess.value,
       "shotTime":
           dailyPicture.pictureMemory.shotTime.value.millisecondsSinceEpoch,
+      "retakeTime": 0,
     });
+  }
+
+  Future<DailyPicture> get(final UserId userId) async {
+    final event = await db.child("user/${userId.value}/dailyPicture").once();
+    final dailyPictureData = event.snapshot.value as Map<dynamic, dynamic>?;
+    if (dailyPictureData == null) throw Exception("cannot find dailyPicture");
+
+    return DailyPicture(PictureMemory.fromRTDB(dailyPictureData));
   }
 }

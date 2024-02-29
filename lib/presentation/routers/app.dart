@@ -15,6 +15,19 @@ class App extends HookConsumerWidget {
     });
     return MaterialApp.router(
       theme: ThemeData(
+        colorScheme: const ColorScheme(
+          background: Colors.transparent,
+          brightness: Brightness.dark,
+          primary: Colors.transparent,
+          onPrimary: Colors.transparent,
+          secondary: Colors.transparent,
+          onSecondary: Colors.transparent,
+          error: Colors.transparent,
+          onError: Colors.transparent,
+          onBackground: Colors.transparent,
+          surface: Colors.transparent,
+          onSurface: Colors.transparent,
+        ), // colorScheme,
         useMaterial3: true,
       ),
       routerConfig: router,
