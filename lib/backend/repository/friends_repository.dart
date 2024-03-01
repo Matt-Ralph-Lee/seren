@@ -1,3 +1,5 @@
+import 'package:seren/backend/model/friend_set.dart';
+
 import '../model/property/user_id.dart';
 import 'database.dart';
 
@@ -6,5 +8,22 @@ class FriendsRepository {
 
   Future<void> setDefault(final UserId userId) async {
     await db.child("user/${userId.value}/friends").set({"hasValue": false});
+  }
+
+  Future<FriendSet> getFriends(final UserId userId) async {
+    final event = await db.child("user/${userId.value}/friends").once();
+    final friendsData = event.snapshot.value as Map<dynamic, dynamic>?;
+    if (friendsData == null) return FriendSet({});
+    return FriendSet.fromRTDB(friendsData);
+  }
+
+  Future<void> setFriends({
+    required final UserId userId,
+    required final UserId strangerUserId,
+  }) async {
+    await db.child("user").update({
+      "${userId.value}/friends/${strangerUserId.value}": true,
+      "${strangerUserId.value}/friends/${userId.value}": true,
+    });
   }
 }

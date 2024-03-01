@@ -23,7 +23,7 @@ class DislikeStrangerUsecase {
     final strangerUserId = UserId(strangerUid);
 
     if (likedBy) {
-      await likedByRepository.updateLikedBySeen(
+      await likedByRepository.delete(
           userId: userId, strangerUserId: strangerUserId);
     }
 

@@ -31,6 +31,13 @@ class IdentityRepository {
     });
   }
 
+  Future<Identity> get(final UserId userId) async {
+    final event = await db.child("user/${userId.value}/identity").once();
+    final identityData = event.snapshot.value as Map<dynamic, dynamic>?;
+    if (identityData == null) throw Exception("cannot find identity");
+    return Identity.fromRTDB(data: identityData, userId: userId);
+  }
+
   Future<Username> getUsername(final UserId userId) async {
     final event =
         await db.child("user/${userId.value}/identity/username").once();
