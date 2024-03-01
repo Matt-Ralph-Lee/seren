@@ -26,4 +26,15 @@ class FriendsRepository {
       "${strangerUserId.value}/friends/${userId.value}": true,
     });
   }
+
+  Future<bool> checkIsFriend({
+    required final UserId userId,
+    required final UserId otherUserId,
+  }) async {
+    final event = await db
+        .child("user/${userId.value}/friends/${otherUserId.value}")
+        .once();
+    final friendsData = event.snapshot.value;
+    return friendsData != null;
+  }
 }

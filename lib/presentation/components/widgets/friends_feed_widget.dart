@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:seren/presentation/controllers/read/get_friend_feed_list/get_friend_feed_list_controller.dart';
 import 'package:seren/presentation/controllers/read/get_my_daily_picture/get_my_daily_picture_controller.dart';
 import 'package:seren/presentation/controllers/write/react_to_feed/react_to_feed_controller.dart';
+
+import '../../shared/constants/page_path.dart';
 
 class FriendsFeedWidget extends ConsumerWidget {
   const FriendsFeedWidget({super.key});
@@ -55,6 +58,14 @@ class FriendsFeedWidget extends ConsumerWidget {
                               reactionPicturePath: "reactionPicturePathHoge"),
                       child: const Text(
                         "React",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => context.push(
+                          PagePath.profilePage(targetUid: friendFeed.uid)),
+                      child: const Text(
+                        "to profile",
                         style: TextStyle(color: Colors.white),
                       ),
                     )

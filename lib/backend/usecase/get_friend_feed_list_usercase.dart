@@ -5,6 +5,7 @@ import 'package:seren/backend/repository/friends_repository.dart';
 import 'package:seren/backend/repository/identity_repository.dart';
 import 'package:seren/backend/repository/reactions_repository.dart';
 import 'package:seren/dto/friend_feed_dto.dart';
+import 'package:seren/dto/location_access_dto.dart';
 import 'package:seren/dto/location_dto.dart';
 import 'package:seren/dto/picture_memory_dto.dart';
 
@@ -43,6 +44,8 @@ class GetFriendFeedListUsercase {
           latitude: friendDailyPicture.pictureMemory.location.latitude,
           longitude: friendDailyPicture.pictureMemory.location.longitude,
         ),
+        locationAccess: LocationAccessDto(
+            friendDailyPicture.pictureMemory.locationAccess.value),
         retakeTime: friendDailyPicture.pictureMemory.retakeTime.value,
         shotTime: friendDailyPicture.pictureMemory.shotTime.value,
       );

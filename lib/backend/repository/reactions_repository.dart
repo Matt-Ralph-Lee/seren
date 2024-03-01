@@ -22,7 +22,7 @@ class ReactionRepository {
     final event = await db
         .child("user/${friendUserId.value}/reactions/${memoryId.value}")
         .once();
-    final reactionsData = event.snapshot.value as Map<String, dynamic>?;
+    final reactionsData = event.snapshot.value as Map<dynamic, dynamic>?;
     if (reactionsData == null) return ReactionSet({});
 
     final commonFriendsReaction = reactionsData.entries.where((entry) {
