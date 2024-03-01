@@ -3,6 +3,7 @@ import 'package:seren/backend/repository/daily_picture_repository.dart';
 import 'package:seren/backend/repository/identity_repository.dart';
 import 'package:seren/backend/repository/profile_repository.dart';
 import 'package:seren/backend/repository/selected_picture_repository.dart';
+import 'package:seren/dto/location_access_dto.dart';
 import 'package:seren/dto/location_dto.dart';
 import 'package:seren/dto/picture_memory_dto.dart';
 
@@ -16,8 +17,10 @@ class GetStrangersUsecase {
 
   factory GetStrangersUsecase() => _cache;
 
-  Future<List<StrangerDto>> execute(
-      {required final String uid, required final int numberOfStranger}) async {
+  Future<List<StrangerDto>> execute({
+    required final String uid,
+    required final int numberOfStranger,
+  }) async {
     final userId = UserId(uid);
     final strangers = await Server()
         .getStrangerUid(userId: userId, numberOfStranger: numberOfStranger);
@@ -53,20 +56,13 @@ class GetStrangersUsecase {
             latitude: strangerDailyPicture.pictureMemory.location.latitude,
             longitude: strangerDailyPicture.pictureMemory.location.longitude,
           ),
+          locationAccess: LocationAccessDto(
+              strangerDailyPicture.pictureMemory.locationAccess.value),
           retakeTime: strangerDailyPicture.pictureMemory.retakeTime.value,
           shotTime: strangerDailyPicture.pictureMemory.shotTime.value,
         ),
         selectedPicture: strangerSelectedPicture
-            .map((picture) => PictureMemoryDto(
-                  primaryPath: picture.primaryPath.value,
-                  secondaryPath: picture.secondaryPath.value,
-                  location: LocationDto(
-                    latitude: picture.location.latitude,
-                    longitude: picture.location.longitude,
-                  ),
-                  retakeTime: picture.retakeTime.value,
-                  shotTime: picture.shotTime.value,
-                ))
+            .map((picture) => PictureMemoryDto.fromPictureMemory(picture))
             .toList(),
         likedBy: likedBy,
       );

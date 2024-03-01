@@ -6,4 +6,7 @@ class PagePath {
   static const permissionRequest = "/permissionRequest";
   static const initialUserSetting = "/initialUserSetting";
   static const matched = "/matched";
+
+  static profilePage({final String targetUid = ":targetUid"}) =>
+      "/profilePage/$targetUid";
 }

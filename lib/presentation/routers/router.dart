@@ -8,6 +8,7 @@ import 'package:seren/presentation/pages/home_page.dart';
 import 'package:seren/presentation/pages/initial_user_setting_page.dart';
 import 'package:seren/presentation/pages/matched_page.dart';
 import 'package:seren/presentation/pages/permission_request_page.dart';
+import 'package:seren/presentation/pages/profile_page.dart';
 import 'package:seren/presentation/pages/sign_in_page.dart';
 import 'package:seren/presentation/pages/sign_up_page.dart';
 import 'package:seren/presentation/routers/shell.dart';
@@ -48,6 +49,12 @@ GoRouter router(RouterRef ref) {
         GoRoute(
           path: PagePath.matched,
           builder: (_, __) => const MatchedPage(),
+        ),
+        GoRoute(
+          path: PagePath.profilePage(),
+          builder: (context, state) => ProfilePage(
+            targetUid: state.pathParameters["targetUid"]!,
+          ),
         )
       ],
     )

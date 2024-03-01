@@ -18,4 +18,12 @@ class Profile {
   })  : _gender = gender,
         _shortIntro = shortIntro,
         _longIntro = longIntro;
+
+  factory Profile.fromRTDB(final Map<dynamic, dynamic> data) {
+    return Profile(
+      gender: Gender(data["gender"]),
+      shortIntro: ShortIntro(data["shortIntro"]),
+      longIntro: LongIntro(data["longIntro"]),
+    );
+  }
 }

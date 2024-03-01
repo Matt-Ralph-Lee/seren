@@ -25,6 +25,13 @@ class ProfileRepository {
     });
   }
 
+  Future<Profile> get(final UserId userId) async {
+    final event = await db.child("user/${userId.value}/profile").once();
+    final profileData = event.snapshot.value as Map<dynamic, dynamic>?;
+    if (profileData == null) throw Exception("cannot find shortIntro");
+    return Profile.fromRTDB(profileData);
+  }
+
   Future<ShortIntro> getShortIntro(final UserId userId) async {
     final event =
         await db.child("user/${userId.value}/profile/shortIntro").once();

@@ -7,7 +7,7 @@ part of 'react_to_feed_controller.dart';
 // **************************************************************************
 
 String _$reactToFeedControllerHash() =>
-    r'4275d360ef65a1ad84d56a14706cfa058fbf058a';
+    r'ffd68ec01f49b33f42ad1430f2ad5d1a3f32b670';
 
 /// See also [ReactToFeedController].
 @ProviderFor(ReactToFeedController)

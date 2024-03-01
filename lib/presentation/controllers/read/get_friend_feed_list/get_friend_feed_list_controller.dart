@@ -12,7 +12,6 @@ class GetFriendFeedListController extends _$GetFriendFeedListController {
     final uid = ref.read(userIdProvider);
     final getFriendFeedListUsecase = GetFriendFeedListUsercase();
     final friendFeedList = await getFriendFeedListUsecase.execute(uid);
-    print(friendFeedList.length);
 
     return friendFeedList;
   }

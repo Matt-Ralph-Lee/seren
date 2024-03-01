@@ -12,7 +12,7 @@ class BlockingsRepository {
 
   Future<BlockingSet> getBlockings(final UserId userId) async {
     final event = await db.child("user/${userId.value}/friends").once();
-    final friendsData = Map<String, bool>.from(event.snapshot.value as dynamic);
+    final friendsData = event.snapshot.value as Map<dynamic, dynamic>?;
     if (friendsData == null) return BlockingSet({});
     return BlockingSet.fromRTDB(friendsData);
   }
