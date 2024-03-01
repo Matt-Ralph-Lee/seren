@@ -9,4 +9,9 @@ class FriendSet extends Iterable<UserId> {
 
   @override
   Iterator<UserId> get iterator => _friendSet.iterator;
+
+  factory FriendSet.fromRTDB(final Map<dynamic, dynamic> data) {
+    final friendSet = data.keys.map((e) => UserId(e)).toSet();
+    return FriendSet(friendSet);
+  }
 }

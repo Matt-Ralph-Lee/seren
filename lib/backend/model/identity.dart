@@ -18,4 +18,15 @@ class Identity {
   })  : _userId = userId,
         _username = username,
         _userIconPath = userIconPath;
+
+  factory Identity.fromRTDB({
+    required final Map<dynamic, dynamic> data,
+    required final UserId userId,
+  }) {
+    return Identity(
+      userId: userId,
+      username: Username(data["username"]),
+      userIconPath: UserIconPath(data["userIconPath"]),
+    );
+  }
 }

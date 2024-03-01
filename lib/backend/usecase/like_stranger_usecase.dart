@@ -1,4 +1,5 @@
 import 'package:seren/backend/model/property/user_id.dart';
+import 'package:seren/backend/repository/friends_repository.dart';
 import 'package:seren/backend/repository/liked_by_repository.dart';
 import 'package:seren/backend/repository/likes_repository.dart';
 
@@ -23,14 +24,16 @@ class LikeStrangerUsecase {
     if (likedBy) {
       // TODO: implement below
       // notification function
-      print("hello");
-      await likedByRepository.updateLikedBySeen(
+      await likedByRepository.delete(
+          userId: userId, strangerUserId: strangerUserId);
+      final friendsRepository = FriendsRepository();
+      await friendsRepository.setFriends(
           userId: userId, strangerUserId: strangerUserId);
     } else {
-      print("hog??");
+      await likedByRepository.set(
+          userId: userId, strangerUserId: strangerUserId);
     }
 
     await likesRepository.set(userId: userId, strangerUserId: strangerUserId);
-    await likedByRepository.set(userId: userId, strangerUserId: strangerUserId);
   }
 }

@@ -12,17 +12,21 @@ class LikedByRepository {
     required final UserId userId,
     required final UserId strangerUserId,
   }) async {
-    await db.child("user/${strangerUserId.value}/likedBy").set({
-      userId.value: {"seen": false}
-    });
+    final strangerBlockingMe = await db
+        .child("user/${strangerUserId.value}/blockings/${userId.value}")
+        .once();
+    if (strangerBlockingMe.snapshot.exists) return;
+    await db
+        .child("user/${strangerUserId.value}/likedBy")
+        .set({userId.value: true});
   }
 
-  Future<void> updateLikedBySeen({
+  Future<void> delete({
     required final UserId userId,
     required final UserId strangerUserId,
   }) async {
-    await db.child("user/${userId.value}/likedBy").update({
-      strangerUserId.value: {"seen": true}
-    });
+    await db
+        .child("user/${userId.value}/likedBy/${strangerUserId.value}")
+        .remove();
   }
 }
