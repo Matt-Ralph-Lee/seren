@@ -6,7 +6,12 @@ class PagePath {
   static const permissionRequest = "/permissionRequest";
   static const initialUserSetting = "/initialUserSetting";
   static const matched = "/matched";
+  static const myProfile = "/myProfile";
+  static const calendar = "/calendar";
 
   static profilePage({final String targetUid = ":targetUid"}) =>
-      "/profilePage/$targetUid";
+      "/profile/$targetUid";
+
+  static memoryDetail({final String targetMemoryId = ":targetMemoryId"}) =>
+      "/memoryDetail$targetMemoryId";
 }

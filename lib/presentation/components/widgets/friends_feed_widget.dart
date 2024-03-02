@@ -38,7 +38,6 @@ class FriendsFeedWidget extends ConsumerWidget {
 
     final Widget friendFeedListWidget = friendFeedState.when(
       data: (friendFeedList) {
-        print(friendFeedList.length);
         return Expanded(
           child: ListView(
             children: [

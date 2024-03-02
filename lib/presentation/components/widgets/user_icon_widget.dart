@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:seren/presentation/controllers/read/get_user_icon/get_user_icon_controller.dart';
 
 import '../../shared/constants/assets/asset_path.dart';
+import '../../shared/constants/page_path.dart';
 
 class UserIconWidget extends ConsumerWidget {
   const UserIconWidget({super.key});
@@ -13,7 +15,9 @@ class UserIconWidget extends ConsumerWidget {
 
     final body = userIconDtoState.when(
       data: (d) => IconButton(
-        onPressed: () {},
+        onPressed: () {
+          context.push(PagePath.myProfile);
+        },
         icon: CircleAvatar(
           backgroundImage: NetworkImage(d.path),
         ),

@@ -3,10 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:seren/backend/function/auth_service.dart';
 import 'package:seren/backend/state/auth/auth_state.dart';
+import 'package:seren/presentation/pages/calendar_page.dart';
 import 'package:seren/presentation/pages/email_verification_page.dart';
 import 'package:seren/presentation/pages/home_page.dart';
 import 'package:seren/presentation/pages/initial_user_setting_page.dart';
 import 'package:seren/presentation/pages/matched_page.dart';
+import 'package:seren/presentation/pages/memory_detail_page.dart';
+import 'package:seren/presentation/pages/my_profile_page.dart';
 import 'package:seren/presentation/pages/permission_request_page.dart';
 import 'package:seren/presentation/pages/profile_page.dart';
 import 'package:seren/presentation/pages/sign_in_page.dart';
@@ -54,6 +57,20 @@ GoRouter router(RouterRef ref) {
           path: PagePath.profilePage(),
           builder: (context, state) => ProfilePage(
             targetUid: state.pathParameters["targetUid"]!,
+          ),
+        ),
+        GoRoute(
+          path: PagePath.myProfile,
+          builder: (_, __) => const MyProfilePage(),
+        ),
+        GoRoute(
+          path: PagePath.calendar,
+          builder: (_, __) => const CalendarPage(),
+        ),
+        GoRoute(
+          path: PagePath.memoryDetail(),
+          builder: (context, state) => MemoryDetailPage(
+            targetMemoryId: state.pathParameters["targetMemoryId"]!,
           ),
         )
       ],
