@@ -8,10 +8,11 @@ import '../model/property/user_id.dart';
 import 'database.dart';
 
 class ReactionRepository {
-  final db = Database.realtimeDatabaes;
+  final rtdb = Database.realtimeDatabaes;
+  final store = Database.firestore;
 
   Future<void> setDefault(final UserId userId) async {
-    await db.child("user/${userId.value}/reactions").set({"hasValue": false});
+    await rtdb.child("user/${userId.value}/reactions").set({"hasValue": false});
   }
 
   Future<ReactionSet> getCommonFriendsReaction({
@@ -19,9 +20,8 @@ class ReactionRepository {
     required final FriendSet friends,
     required final MemoryId memoryId,
   }) async {
-    final event = await db
-        .child("user/${friendUserId.value}/reactions/${memoryId.value}")
-        .once();
+    final event =
+        await rtdb.child("user/${friendUserId.value}/reactions").once();
     final reactionsData = event.snapshot.value as Map<dynamic, dynamic>?;
     if (reactionsData == null) return ReactionSet({});
 
@@ -44,8 +44,16 @@ class ReactionRepository {
   Future<void> add(
       {required final Reaction reaction,
       required final UserId feedOwnerId}) async {
-    await db
-        .child("user/${feedOwnerId.value}/reactions/${reaction.memoryId.value}")
+    await rtdb
+        .child("user/${feedOwnerId.value}/reactions")
         .set({reaction.reactedBy.value: reaction.reactionPath.value});
+    await store
+        .collection("user")
+        .doc(feedOwnerId.value)
+        .collection("memories")
+        .doc(reaction.memoryId.value)
+        .update({
+      "reactions": {reaction.reactedBy.value: reaction.reactionPath.value}
+    });
   }
 }

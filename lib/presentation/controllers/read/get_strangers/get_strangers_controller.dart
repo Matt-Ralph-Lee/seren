@@ -9,7 +9,7 @@ part "get_strangers_controller.g.dart";
 class GetStrangersController extends _$GetStrangersController {
   @override
   Future<List<StrangerDto>> build() async {
-    final uid = ref.watch(userIdProvider);
+    final uid = ref.read(userIdProvider);
     final getStrangersUsecase = GetStrangersUsecase();
     final strangerDtoList =
         await getStrangersUsecase.execute(uid: uid, numberOfStranger: 1);
