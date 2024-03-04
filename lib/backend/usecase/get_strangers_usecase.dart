@@ -50,16 +50,16 @@ class GetStrangersUsecase {
         username: strangerUsername.value,
         shortIntro: strangerShortIntro.value,
         dailyPicture: PictureMemoryDto(
-          primaryPath: strangerDailyPicture.pictureMemory.primaryPath.value,
-          secondaryPath: strangerDailyPicture.pictureMemory.secondaryPath.value,
+          primaryPath: strangerDailyPicture.primaryPath.value,
+          secondaryPath: strangerDailyPicture.secondaryPath.value,
           location: LocationDto(
-            latitude: strangerDailyPicture.pictureMemory.location.latitude,
-            longitude: strangerDailyPicture.pictureMemory.location.longitude,
+            latitude: strangerDailyPicture.location.latitude,
+            longitude: strangerDailyPicture.location.longitude,
           ),
-          locationAccess: LocationAccessDto(
-              strangerDailyPicture.pictureMemory.locationAccess.value),
-          retakeTime: strangerDailyPicture.pictureMemory.retakeTime.value,
-          shotTime: strangerDailyPicture.pictureMemory.shotTime.value,
+          locationAccess:
+              LocationAccessDto(strangerDailyPicture.locationAccess.value),
+          retakeTime: strangerDailyPicture.retakeTime.value,
+          shotTime: strangerDailyPicture.shotTime.value,
         ),
         selectedPicture: strangerSelectedPicture
             .map((picture) => PictureMemoryDto.fromPictureMemory(picture))

@@ -12,7 +12,7 @@ import 'database.dart';
 import 'storage_repository.dart';
 
 class DailyPictureRepositiory {
-  final db = Database.realtimeDatabaes;
+  final db = Database.realtimeDatabase;
 
   Future<void> setDefault(final UserId userId) async {
     final memoryId = MemoryId("defaultMemoryId");
@@ -26,28 +26,25 @@ class DailyPictureRepositiory {
     final shotTime = ShotTime(DateTime.now());
 
     final dailyPicture = DailyPicture(
-      PictureMemory(
-        shotTime: shotTime,
-        memoryId: memoryId,
-        primaryPath: primaryPath,
-        secondaryPath: secondaryPath,
-        location: location,
-        locationAccess: locationAccess,
-        retakeTime: retakeTime,
-      ),
+      shotTime: shotTime,
+      memoryId: memoryId,
+      primaryPath: primaryPath,
+      secondaryPath: secondaryPath,
+      location: location,
+      locationAccess: locationAccess,
+      retakeTime: retakeTime,
     );
 
     await db.child("user/${userId.value}/dailyPicture").set({
-      "memoryId": dailyPicture.pictureMemory.memoryId.value,
-      "primaryPicturePath": dailyPicture.pictureMemory.primaryPath.value,
-      "secondaryPicturePath": dailyPicture.pictureMemory.secondaryPath.value,
+      "memoryId": dailyPicture.memoryId.value,
+      "primaryPicturePath": dailyPicture.primaryPath.value,
+      "secondaryPicturePath": dailyPicture.secondaryPath.value,
       "location": {
-        "latitude": dailyPicture.pictureMemory.location.latitude,
-        "longitude": dailyPicture.pictureMemory.location.longitude,
+        "latitude": dailyPicture.location.latitude,
+        "longitude": dailyPicture.location.longitude,
       },
-      "locationAccess": dailyPicture.pictureMemory.locationAccess.value,
-      "shotTime":
-          dailyPicture.pictureMemory.shotTime.value.millisecondsSinceEpoch,
+      "locationAccess": dailyPicture.locationAccess.value,
+      "shotTime": dailyPicture.shotTime.value.millisecondsSinceEpoch,
       "retakeTime": 0,
     });
   }
@@ -57,6 +54,7 @@ class DailyPictureRepositiory {
     final dailyPictureData = event.snapshot.value as Map<dynamic, dynamic>?;
     if (dailyPictureData == null) throw Exception("cannot find dailyPicture");
 
-    return DailyPicture(PictureMemory.fromRTDB(dailyPictureData));
+    return DailyPicture.fromPictureMemory(
+        PictureMemory.fromRTDB(dailyPictureData));
   }
 }

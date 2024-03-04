@@ -4,7 +4,7 @@ import '../model/property/user_id.dart';
 import 'database.dart';
 
 class SelectedPictureRepository {
-  final db = Database.realtimeDatabaes;
+  final db = Database.realtimeDatabase;
 
   Future<void> setDefault(final UserId userId) async {
     await db

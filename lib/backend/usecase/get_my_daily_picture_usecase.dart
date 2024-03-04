@@ -18,8 +18,8 @@ class GetMyDailyPictureUsecase {
     final dailyPicture = await dailyPictureRepository.get(userId);
 
     final myDailyPictureDto = MyDailyPictureDto(
-        memoryId: dailyPicture.pictureMemory.memoryId.value,
-        picturePath: dailyPicture.pictureMemory.primaryPath.value);
+        memoryId: dailyPicture.memoryId.value,
+        picturePath: dailyPicture.primaryPath.value);
 
     return myDailyPictureDto;
   }

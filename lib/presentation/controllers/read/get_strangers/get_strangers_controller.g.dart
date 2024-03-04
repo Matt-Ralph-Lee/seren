@@ -7,7 +7,7 @@ part of 'get_strangers_controller.dart';
 // **************************************************************************
 
 String _$getStrangersControllerHash() =>
-    r'558bdc323663ab1990b04db3d4505d8a248f3c7f';
+    r'151c1d7f6df743ff518818d7cd1a40171759d887';
 
 /// See also [GetStrangersController].
 @ProviderFor(GetStrangersController)

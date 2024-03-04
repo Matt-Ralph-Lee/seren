@@ -34,8 +34,7 @@ class GetProfileUsecase {
     final dailyPicture = await dailyPictureRepository.get(userId);
     final selectedPicture = await selectedPictureRepository.get(userId);
 
-    final dailyPictureDto =
-        PictureMemoryDto.fromPictureMemory(dailyPicture.pictureMemory);
+    final dailyPictureDto = PictureMemoryDto.fromPictureMemory(dailyPicture);
 
     final selectedPictureDto = selectedPicture.map((picture) {
       return PictureMemoryDto.fromPictureMemory(picture);

@@ -61,8 +61,8 @@ class FriendsFeedWidget extends ConsumerWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () => context.push(
-                          PagePath.profilePage(targetUid: friendFeed.uid)),
+                      onPressed: () => context
+                          .push(PagePath.profile(targetUid: friendFeed.uid)),
                       child: const Text(
                         "to profile",
                         style: TextStyle(color: Colors.white),

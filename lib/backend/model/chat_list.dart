@@ -1,6 +1,6 @@
 import 'chat.dart';
 
-class ChatList extends Iterable {
+class ChatList extends Iterable<Chat> {
   final List<Chat> _chatList;
 
   List<Chat> get chatList => _chatList;
@@ -8,5 +8,5 @@ class ChatList extends Iterable {
   ChatList(this._chatList);
 
   @override
-  Iterator get iterator => _chatList.iterator;
+  Iterator<Chat> get iterator => _chatList.iterator;
 }

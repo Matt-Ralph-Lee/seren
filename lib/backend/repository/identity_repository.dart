@@ -6,7 +6,7 @@ import 'database.dart';
 import 'storage_repository.dart';
 
 class IdentityRepository {
-  final db = Database.realtimeDatabaes;
+  final db = Database.realtimeDatabase;
 
   Future<void> setDefault(final UserId userId) async {
     final username = Username("Username");

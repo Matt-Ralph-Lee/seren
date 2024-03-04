@@ -6,7 +6,7 @@ import '../model/property/user_id.dart';
 import 'database.dart';
 
 class ProfileRepository {
-  final db = Database.realtimeDatabaes;
+  final db = Database.realtimeDatabase;
 
   Future<void> setDefault(final UserId userId) async {
     final gender = Gender("other");

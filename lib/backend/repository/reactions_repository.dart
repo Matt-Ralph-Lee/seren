@@ -8,7 +8,7 @@ import '../model/property/user_id.dart';
 import 'database.dart';
 
 class ReactionRepository {
-  final rtdb = Database.realtimeDatabaes;
+  final rtdb = Database.realtimeDatabase;
   final store = Database.firestore;
 
   Future<void> setDefault(final UserId userId) async {

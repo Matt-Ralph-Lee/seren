@@ -4,7 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:seren/backend/function/auth_service.dart';
 import 'package:seren/backend/state/auth/auth_state.dart';
 import 'package:seren/presentation/pages/calendar_page.dart';
+import 'package:seren/presentation/pages/chat_list_page.dart';
+import 'package:seren/presentation/pages/chat_room_page.dart';
 import 'package:seren/presentation/pages/email_verification_page.dart';
+import 'package:seren/presentation/pages/friend_list_page.dart';
 import 'package:seren/presentation/pages/home_page.dart';
 import 'package:seren/presentation/pages/initial_user_setting_page.dart';
 import 'package:seren/presentation/pages/matched_page.dart';
@@ -54,7 +57,7 @@ GoRouter router(RouterRef ref) {
           builder: (_, __) => const MatchedPage(),
         ),
         GoRoute(
-          path: PagePath.profilePage(),
+          path: PagePath.profile(),
           builder: (context, state) => ProfilePage(
             targetUid: state.pathParameters["targetUid"]!,
           ),
@@ -71,6 +74,20 @@ GoRouter router(RouterRef ref) {
           path: PagePath.memoryDetail(),
           builder: (context, state) => MemoryDetailPage(
             targetMemoryId: state.pathParameters["targetMemoryId"]!,
+          ),
+        ),
+        GoRoute(
+          path: PagePath.chatList,
+          builder: (_, __) => const ChatListPage(),
+        ),
+        GoRoute(
+          path: PagePath.friendList,
+          builder: (_, __) => const FriendListPage(),
+        ),
+        GoRoute(
+          path: PagePath.chatRoom(),
+          builder: (context, state) => ChatRoomPage(
+            chatId: state.pathParameters["chatId"]!,
           ),
         )
       ],

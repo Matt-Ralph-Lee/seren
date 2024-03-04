@@ -21,4 +21,13 @@ class Message {
         _sentBy = sentBy,
         _seen = seen,
         _sentAt = sentAt;
+
+  factory Message.fromRTDB(final Map<dynamic, dynamic> data) {
+    return Message(
+      messageText: MessageText(data["message"]),
+      sentBy: UserId(data["sentBy"]),
+      seen: data["seen"],
+      sentAt: DateTime.fromMillisecondsSinceEpoch(data["timestamp"]),
+    );
+  }
 }
