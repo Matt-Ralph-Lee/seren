@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:seren/presentation/controllers/write/edit_username/edit_username_controller.dart';
 import 'package:seren/presentation/controllers/write/sign_out/sign_out_controller.dart';
 
 import '../shared/constants/page_path.dart';
@@ -30,12 +31,25 @@ class MyProfilePage extends ConsumerWidget {
           )
         ],
       ),
-      body: ElevatedButton(
-        onPressed: () => context.push(PagePath.calendar),
-        child: const Text(
-          "see all memories",
-          style: TextStyle(color: Colors.white),
-        ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () => context.push(PagePath.calendar),
+            child: const Text(
+              "see all memories",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => ref
+                .read(editUsernameControllerProvider.notifier)
+                .execute("usernameFuga"),
+            child: const Text(
+              "edit username",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

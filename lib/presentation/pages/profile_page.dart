@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seren/presentation/controllers/read/get_chat_id/get_chat_id_controller.dart';
 import 'package:seren/presentation/controllers/read/get_profile/get_profile_controller.dart';
+import 'package:seren/presentation/controllers/write/add_blocking/add_blocking_controller.dart';
 import 'package:seren/presentation/controllers/write/add_chat/add_chat_controller.dart';
+import 'package:seren/presentation/controllers/write/report/report_controller.dart';
 
 import '../shared/constants/page_path.dart';
 
@@ -70,6 +72,24 @@ class ProfilePage extends ConsumerWidget {
                     style: const TextStyle(color: Colors.white),
                   ),
                 ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => ref
+                  .read(addBlockingControllerProvider.notifier)
+                  .execute(targetUid),
+              child: const Text(
+                "Block",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => ref
+                  .read(reportControllerProvider.notifier)
+                  .execute(targetUid: targetUid, text: "i hate this guy"),
+              child: const Text(
+                "Report",
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],

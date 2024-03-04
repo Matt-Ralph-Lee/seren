@@ -39,4 +39,22 @@ class ProfileRepository {
     if (shortIntroData == null) throw Exception("cannot find shortIntro");
     return ShortIntro(shortIntroData);
   }
+
+  Future<void> editShortIntro({
+    required final UserId userId,
+    required final ShortIntro newShortIntro,
+  }) async {
+    await db.child("user/${userId.value}/profile").update({
+      "shortIntro": newShortIntro.value,
+    });
+  }
+
+  Future<void> editLongIntro({
+    required final UserId userId,
+    required final LongIntro newLongIntro,
+  }) async {
+    await db.child("user/${userId.value}/profile").update({
+      "shortIntro": newLongIntro.value,
+    });
+  }
 }
