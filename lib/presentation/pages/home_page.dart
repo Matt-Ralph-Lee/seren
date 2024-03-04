@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:seren/presentation/components/widgets/friends_feed_widget.dart';
 import 'package:seren/presentation/components/widgets/seek_stranger_widget.dart';
 import 'package:seren/presentation/components/widgets/user_icon_widget.dart';
-
-import '../controllers/write/sign_out/sign_out_controller.dart';
+import 'package:seren/presentation/shared/constants/page_path.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signOutState = ref.watch(signOutControllerProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,13 +21,9 @@ class HomePage extends HookConsumerWidget {
         leading: const UserIconWidget(),
         actions: [
           IconButton(
-            onPressed: signOutState.isLoading
-                ? null
-                : () async {
-                    ref.read(signOutControllerProvider.notifier).execute();
-                  },
+            onPressed: () => context.push(PagePath.chatList),
             icon: const Icon(
-              Icons.logout,
+              Icons.people,
               color: Colors.white,
             ),
           )

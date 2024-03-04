@@ -7,7 +7,7 @@ part of 'get_friend_feed_list_controller.dart';
 // **************************************************************************
 
 String _$getFriendFeedListControllerHash() =>
-    r'1a81f899b80c3fd0e41cf3aac18fa8692c634af9';
+    r'17f8a6a4e5b980890ea449439e2db88875d7022b';
 
 /// See also [GetFriendFeedListController].
 @ProviderFor(GetFriendFeedListController)

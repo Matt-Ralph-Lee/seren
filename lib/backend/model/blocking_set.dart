@@ -1,6 +1,6 @@
 import 'property/user_id.dart';
 
-class BlockingSet extends Iterable {
+class BlockingSet extends Iterable<UserId> {
   final Set<UserId> _blockingSet;
 
   Set<UserId> get blockingSet => _blockingSet;
@@ -8,7 +8,7 @@ class BlockingSet extends Iterable {
   BlockingSet(this._blockingSet);
 
   @override
-  Iterator get iterator => _blockingSet.iterator;
+  Iterator<UserId> get iterator => _blockingSet.iterator;
 
   factory BlockingSet.fromRTDB(final Map<dynamic, dynamic> data) {
     final blockingSet = data.keys.map((e) => UserId(e)).toSet();
