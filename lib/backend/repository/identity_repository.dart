@@ -53,4 +53,22 @@ class IdentityRepository {
     if (userIconPathData == null) throw Exception("cannot find userIconPath");
     return UserIconPath(userIconPathData);
   }
+
+  Future<void> editUsername({
+    required final UserId userId,
+    required final Username newUsername,
+  }) async {
+    await db
+        .child("user/${userId.value}/identity")
+        .update({"username": newUsername.value});
+  }
+
+  Future<void> editUserIconPath({
+    required final UserId userId,
+    required final UserIconPath newUserIconPath,
+  }) async {
+    await db
+        .child("user/${userId.value}/identity")
+        .update({"userIconPath": newUserIconPath.value});
+  }
 }

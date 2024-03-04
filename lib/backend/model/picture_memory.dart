@@ -57,4 +57,20 @@ class PictureMemory {
       retakeTime: RetakeTime(data["retakeTime"]),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is PictureMemory) {
+      return runtimeType == other.runtimeType &&
+          _primaryPath.value == other._primaryPath.value;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  int get hashCode => _primaryPath.value.hashCode;
 }
